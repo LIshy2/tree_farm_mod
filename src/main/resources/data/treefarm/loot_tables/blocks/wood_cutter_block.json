@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "treefarm:garden_crafting_table"
+          "name": "treefarm:wood_cutter_block"
         }
       ]
     }

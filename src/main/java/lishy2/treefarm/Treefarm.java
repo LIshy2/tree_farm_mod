@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 @Mod("treefarm")
 public class Treefarm {
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "treefarm";
 
 
@@ -26,9 +26,7 @@ public class Treefarm {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-        LOGGER.info("Registering new items and blocks");
         RegistryHandler.init();
-        LOGGER.info("Success registering");
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -56,12 +54,7 @@ public class Treefarm {
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)
-//    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-//    public static class RegistryEvents {
-//        @SubscribeEvent
-//        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-//             register a new block here
-//            LOGGER.info("HELLO from Register Block");
-//        }
-//    }
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class RegistryEvents {
+    }
 }

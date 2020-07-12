@@ -1,7 +1,210 @@
-[12июл.2020 09:10:31.898] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication/]: Logging in with username & password
-[12июл.2020 09:10:32.779] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--username=LIshy2005, --gameDir, ., --launchTarget, fmluserdevclient, --fml.mcpVersion, 20200515.085601, --fml.mcVersion, 1.15.2, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 31.2.9, --version, MOD_DEV, --assetIndex, 1.15, --assetsDir, C:\Users\ishay\.gradle\caches\forge_gradle\assets, --uuid, fcca514a957a4ff8833a2b9647020350, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
-[12июл.2020 09:10:32.781] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 5.1.0+69+master.79f13f7 starting: java version 11.0.4 by JetBrains s.r.o
-[12июл.2020 09:10:32.898] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
-[12июл.2020 09:10:33.706] [main/INFO] [STDERR/]: [jdk.nashorn.api.scripting.NashornScriptEngine:<init>:143]: Warning: Nashorn engine is planned to be removed from a future JDK release
-[12июл.2020 09:10:34.045] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevclient' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\ishay\.gradle\caches\forge_gradle\assets, --uuid, fcca514a957a4ff8833a2b9647020350, --username=LIshy2005, --assetIndex, 1.15, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
-[12июл.2020 09:10:35.347] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: LIshy2005
+[12июл.2020 21:48:03.871] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication/]: Logging in with username & password
+[12июл.2020 21:48:04.644] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--username=LIshy2005, --gameDir, ., --launchTarget, fmluserdevclient, --fml.mcpVersion, 20200515.085601, --fml.mcVersion, 1.15.2, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 31.2.9, --version, MOD_DEV, --assetIndex, 1.15, --assetsDir, C:\Users\ishay\.gradle\caches\forge_gradle\assets, --uuid, fcca514a957a4ff8833a2b9647020350, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
+[12июл.2020 21:48:04.646] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 5.1.0+69+master.79f13f7 starting: java version 11.0.4 by JetBrains s.r.o
+[12июл.2020 21:48:04.786] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
+[12июл.2020 21:48:15.112] [main/FATAL] [net.minecraftforge.fml.loading.progress.ClientVisualization/]: WARNING : glfwInit took 10.1394401 seconds to start.
+[12июл.2020 21:48:15.905] [main/INFO] [STDERR/]: [jdk.nashorn.api.scripting.NashornScriptEngine:<init>:143]: Warning: Nashorn engine is planned to be removed from a future JDK release
+[12июл.2020 21:48:16.373] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevclient' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\ishay\.gradle\caches\forge_gradle\assets, --uuid, fcca514a957a4ff8833a2b9647020350, --username=LIshy2005, --assetIndex, 1.15, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
+[12июл.2020 21:48:17.937] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: LIshy2005
+[12июл.2020 21:48:28.576] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.2.2 build 10
+[12июл.2020 21:48:29.180] [modloading-worker-11/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 31.2.9, for MC 1.15.2 with MCP 20200515.085601
+[12июл.2020 21:48:29.181] [modloading-worker-11/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v31.2.9 Initialized
+[12июл.2020 21:48:29.214] [modloading-worker-9/INFO] [lishy2.treefarm.Treefarm/]: Registration started
+[12июл.2020 21:48:29.214] [modloading-worker-9/INFO] [lishy2.treefarm.Treefarm/]: Registration finished
+[12июл.2020 21:48:31.402] [Render thread/INFO] [com.mojang.text2speech.NarratorWindows/]: Narrator library for x64 successfully loaded
+[12июл.2020 21:48:31.486] [Render thread/INFO] [net.minecraft.resources.SimpleReloadableResourceManager/]: Reloading ResourceManager: Default, Mod Resources
+[12июл.2020 21:48:31.643] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[12июл.2020 21:48:32.232] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 31.2.9 Target: 31.2.31
+[12июл.2020 21:48:34.752] [Render thread/INFO] [net.minecraft.client.audio.SoundSystem/]: OpenAL initialized.
+[12июл.2020 21:48:34.753] [Render thread/INFO] [net.minecraft.client.audio.SoundEngine/SOUNDS]: Sound engine started
+[12июл.2020 21:48:34.915] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[12июл.2020 21:48:35.098] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 128x128x4 minecraft:textures/atlas/signs.png-atlas
+[12июл.2020 21:48:35.099] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[12июл.2020 21:48:35.103] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[12июл.2020 21:48:35.114] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[12июл.2020 21:48:35.116] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[12июл.2020 21:48:35.118] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[12июл.2020 21:48:35.630] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 256x256x0 minecraft:textures/atlas/particles.png-atlas
+[12июл.2020 21:48:35.634] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[12июл.2020 21:48:35.635] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[12июл.2020 21:48:57.581] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[12июл.2020 21:48:57.582] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[12июл.2020 21:48:57.583] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[12июл.2020 21:48:57.584] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[12июл.2020 21:48:57.585] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[12июл.2020 21:48:57.743] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Starting integrated minecraft server version 1.15.2
+[12июл.2020 21:48:57.743] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Generating keypair
+[12июл.2020 21:48:57.968] [Server thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this SERVER instance
+[12июл.2020 21:48:57.985] [Server thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry Block: Found a missing id from the world treefarm:garden_crafting_table
+[12июл.2020 21:48:58.097] [Server thread/INFO] [net.minecraft.resources.SimpleReloadableResourceManager/]: Reloading ResourceManager: Default, main, forge-1.15.2-31.2.9_mapped_stable_60-1.15-recomp.jar
+[12июл.2020 21:48:58.871] [Server thread/INFO] [net.minecraft.item.crafting.RecipeManager/]: Loaded 6 recipes
+[12июл.2020 21:48:59.873] [Server thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 825 advancements
+[12июл.2020 21:49:00.481] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[12июл.2020 21:49:01.203] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 0%
+[12июл.2020 21:49:01.203] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 0%
+[12июл.2020 21:49:01.503] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 51%
+[12июл.2020 21:49:03.305] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 83%
+[12июл.2020 21:49:03.305] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 83%
+[12июл.2020 21:49:03.305] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 83%
+[12июл.2020 21:49:03.505] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 99%
+[12июл.2020 21:49:03.572] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Time elapsed: 3070 ms
+[12июл.2020 21:49:04.579] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[12июл.2020 21:49:04.581] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[12июл.2020 21:49:04.583] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Changing view distance to 11, from 10
+[12июл.2020 21:49:06.138] [Netty Local Client IO #0/INFO] [net.minecraftforge.fml.network.NetworkHooks/]: Connected to a modded server.
+[12июл.2020 21:49:06.227] [Server thread/INFO] [net.minecraftforge.common.AdvancementLoadFix/]: Using new advancement loading for net.minecraft.advancements.PlayerAdvancements@7518482c
+[12июл.2020 21:49:06.247] [Server thread/INFO] [net.minecraft.server.management.PlayerList/]: LIshy2005[local:E:fa4ba25b] logged in with entity id 245 at (-290.30000001192093, 63.0, -190.69999998807907)
+[12июл.2020 21:49:06.281] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: LIshy2005 joined the game
+[12июл.2020 21:49:07.573] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Saving and pausing game...
+[12июл.2020 21:49:07.579] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'Testing'/minecraft:overworld
+[12июл.2020 21:49:07.690] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 7 advancements
+[12июл.2020 21:49:24.982] [Server thread/INFO] [lishy2.treefarm.Treefarm/]: WORLD STATE net.minecraft.world.server.ServerWorld@1f99eb33
+[12июл.2020 21:49:24.985] [Server thread/ERROR] [net.minecraft.server.MinecraftServer/]: Encountered an unexpected exception
+net.minecraft.crash.ReportedException: Ticking block entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:853) ~[?:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:784) ~[?:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:114) ~[?:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:637) [?:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+Caused by: java.lang.NullPointerException
+	at net.minecraft.world.World.isOutsideBuildHeight(World.java:138) ~[?:?]
+	at net.minecraft.world.World.getBlockState(World.java:363) ~[?:?]
+	at net.minecraft.world.World.func_225521_a_(World.java:247) ~[?:?]
+	at net.minecraft.world.IWorldWriter.destroyBlock(IWorldWriter.java:14) ~[?:?]
+	at lishy2.treefarm.entities.WoodCutterBlockEntity.tick(WoodCutterBlockEntity.java:53) ~[?:?]
+	at net.minecraft.world.World.tickBlockEntities(World.java:478) ~[?:?]
+	at net.minecraft.world.server.ServerWorld.tick(ServerWorld.java:368) ~[?:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:849) ~[?:?]
+	... 4 more
+[12июл.2020 21:49:24.989] [Server thread/ERROR] [net.minecraft.server.MinecraftServer/]: This crash report has been saved to: C:\Users\ishay\Desktop\TreeFarmModPlugin\run\.\crash-reports\crash-2020-07-12_21.49.24-server.txt
+[12июл.2020 21:49:24.989] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[12июл.2020 21:49:24.990] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[12июл.2020 21:49:24.995] [Render thread/INFO] [STDOUT/]: [net.minecraft.util.registry.Bootstrap:printToSYSOUT:103]: ---- Minecraft Crash Report ----
+// My bad.
+
+Time: 12.07.2020, 21:49
+Description: Ticking block entity
+
+java.lang.NullPointerException: Ticking block entity
+	at net.minecraft.world.World.isOutsideBuildHeight(World.java:138) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.World.getBlockState(World.java:363) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.World.func_225521_a_(World.java:247) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.IWorldWriter.destroyBlock(IWorldWriter.java:14) ~[?:?] {re:classloading}
+	at lishy2.treefarm.entities.WoodCutterBlockEntity.tick(WoodCutterBlockEntity.java:53) ~[?:?] {re:classloading}
+	at net.minecraft.world.World.tickBlockEntities(World.java:478) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.server.ServerWorld.tick(ServerWorld.java:368) ~[?:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:849) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:784) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:114) ~[?:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:637) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:834) ~[?:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at net.minecraft.world.World.isOutsideBuildHeight(World.java:138)
+	at net.minecraft.world.World.getBlockState(World.java:363)
+	at net.minecraft.world.World.func_225521_a_(World.java:247)
+	at net.minecraft.world.IWorldWriter.destroyBlock(IWorldWriter.java:14)
+	at lishy2.treefarm.entities.WoodCutterBlockEntity.tick(WoodCutterBlockEntity.java:53)
+
+-- Block entity being ticked --
+Details:
+	Name: null // lishy2.treefarm.entities.WoodCutterBlockEntity
+	Block: Block{treefarm:wood_cutter_block}
+	Block location: World: (-314,64,-193), Chunk: (at 6,4,15 in -20,-13; contains blocks -320,0,-208 to -305,255,-193), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Block: Block{treefarm:wood_cutter_block}
+	Block location: World: (-314,64,-193), Chunk: (at 6,4,15 in -20,-13; contains blocks -320,0,-208 to -305,255,-193), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+Stacktrace:
+	at net.minecraft.world.World.tickBlockEntities(World.java:478)
+	at net.minecraft.world.server.ServerWorld.tick(ServerWorld.java:368)
+
+-- Affected level --
+Details:
+	All players: 1 total; [ServerPlayerEntity['LIshy2005'/245, l='Testing', x=-312.62, y=65.00, z=-191.72]]
+	Chunk stats: ServerChunkCache: 2501
+	Level dimension: DimensionType{minecraft:overworld}
+	Level name: Testing
+	Level seed: 6368286180295824428
+	Level generator: ID 00 - default, ver 1. Features enabled: true
+	Level generator options: {}
+	Level spawn location: World: (-256,63,-160), Chunk: (at 0,3,0 in -16,-10; contains blocks -256,0,-160 to -241,255,-145), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Level time: 13814 game time, 13814 day time
+	Known server brands: forge
+	Level was modded: true
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 56609 (now: false), thunder time: 64733 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:849)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:784)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:114)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:637)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.15.2
+	Minecraft Version ID: 1.15.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 11.0.4, JetBrains s.r.o
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), JetBrains s.r.o
+	Memory: 637458736 bytes (607 MB) / 1496317952 bytes (1427 MB) up to 4282384384 bytes (4084 MB)
+	CPUs: 12
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	ModLauncher: 5.1.0+69+master.79f13f7
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/eventbus-2.2.0-service.jar eventbus PLUGINSERVICE 
+		/forge-1.15.2-31.2.9_mapped_stable_60-1.15-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.15.2-31.2.9_mapped_stable_60-1.15-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/forge-1.15.2-31.2.9_mapped_stable_60-1.15-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/accesstransformers-2.1.1-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.15.2-31.2.9_mapped_stable_60-1.15-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/forge-1.15.2-31.2.9_mapped_stable_60-1.15-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 31.2
+	Forge: net.minecraftforge:31.2.9
+	FML Language Providers: 
+		javafml@31.2
+		minecraft@1
+	Mod List: 
+		client-extra.jar Minecraft {minecraft@1.15.2 DONE}
+		main TreeFarm {treefarm@NONE DONE}
+		forge-1.15.2-31.2.9_mapped_stable_60-1.15-recomp.jar Forge {forge@31.2.9 DONE}
+	Player Count: 1 / 8; [ServerPlayerEntity['LIshy2005'/245, l='Testing', x=-312.62, y=65.00, z=-191.72]]
+	Data Packs: vanilla, mod:treefarm (incompatible), mod:forge (incompatible)
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'
+[12июл.2020 21:49:24.995] [Server thread/INFO] [net.minecraft.network.play.ServerPlayNetHandler/]: LIshy2005 lost connection: Disconnected
+[12июл.2020 21:49:24.996] [Render thread/INFO] [STDOUT/]: [net.minecraft.util.registry.Bootstrap:printToSYSOUT:103]: #@!@# Game crashed! Crash report saved to: #@!@# .\crash-reports\crash-2020-07-12_21.49.24-server.txt
+[12июл.2020 21:49:24.996] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: LIshy2005 left the game
+[12июл.2020 21:49:25.112] [Server thread/ERROR] [net.minecraft.world.chunk.Chunk/]: A TileEntity type lishy2.treefarm.entities.WoodCutterBlockEntity has thrown an exception trying to write state. It will not persist, Report this to the mod author
+java.lang.RuntimeException: class lishy2.treefarm.entities.WoodCutterBlockEntity is missing a mapping! This is a bug!
+	at net.minecraft.tileentity.TileEntity.writeInternal(TileEntity.java:64) ~[?:?]
+	at net.minecraft.tileentity.TileEntity.write(TileEntity.java:58) ~[?:?]
+	at net.minecraft.world.chunk.Chunk.func_223134_j(Chunk.java:426) ~[?:?]
+	at net.minecraft.world.chunk.storage.ChunkSerializer.func_222645_a(ChunkSerializer.java:286) ~[?:?]
+	at net.minecraft.world.server.ChunkManager.func_219229_a(ChunkManager.java:691) ~[?:?]
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:176) [?:?]
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177) [?:?]
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195) [?:?]
+	at java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1654) [?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) [?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) [?:?]
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150) [?:?]
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173) [?:?]
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) [?:?]
+	at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:497) [?:?]
+	at net.minecraft.world.server.ChunkManager.save(ChunkManager.java:345) [?:?]
+	at net.minecraft.world.server.ServerChunkProvider.save(ServerChunkProvider.java:311) [?:?]
+	at net.minecraft.world.server.ServerWorld.save(ServerWorld.java:754) [?:?]
+	at net.minecraft.server.MinecraftServer.save(MinecraftServer.java:528) [?:?]
+	at net.minecraft.server.MinecraftServer.stopServer(MinecraftServer.java:568) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.stopServer(IntegratedServer.java:216) [?:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:676) [?:?]
+	at java.lang.Thread.run(Thread.java:834) [?:?]

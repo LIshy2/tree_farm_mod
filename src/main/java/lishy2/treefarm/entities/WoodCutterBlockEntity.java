@@ -1,62 +1,49 @@
 package lishy2.treefarm.entities;
 
+import lishy2.treefarm.Treefarm;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.AxeItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
+import net.minecraft.world.server.ServerWorld;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
-public class WoodCutterBlockEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+import static lishy2.treefarm.util.RegistryHandler.WOOD_CUTTER_BLOCK;
+
+
+public class WoodCutterBlockEntity extends TileEntity implements ITickableTileEntity {
 
     private Tree cuttingTreeNow;
     private AxeItem axe;
+    private int cooldown;
 
-    public WoodCutterBlockEntity(TileEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
+    public WoodCutterBlockEntity() {
+        super(TileEntityType.Builder.create(WoodCutterBlockEntity::new, WOOD_CUTTER_BLOCK.get()).build(null));
     }
 
-    @Override
-    public ITextComponent getDisplayName() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
-        return null;
-    }
 
     @Override
     public void tick() {
-        if (cuttingTreeNow.isEmpty()) {
-            cuttingTreeNow = new Tree(this.getPos().up(), world);
+        if (world instanceof ServerWorld) {
+            ++cooldown;
+            if (cooldown == 20) {
+                if (cuttingTreeNow == null || cuttingTreeNow.isEmpty()) {
+                    cuttingTreeNow = new Tree(this.getPos().up(), world);
+                }
+                Treefarm.LOGGER.info("WORLD STATE " + world);
+                world.destroyBlock(cuttingTreeNow.pop(), true);
+                cooldown = 0;
+            }
         }
-        world.destroyBlock(cuttingTreeNow.pop(), true);
     }
 
-    public final ItemStackHandler inventory = new ItemStackHandler(1) {
-
-        @Override
-        public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-            return true;
-        }
-    };
 
 }
 

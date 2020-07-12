@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "treefarm:blocks/garden_crafting_table"
+    "all": "treefarm:blocks/wood_cutter_block"
   }
 }

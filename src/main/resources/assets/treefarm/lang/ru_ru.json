@@ -1,3 +1,5 @@
 {
-  "item.treefarm.wood_cutter_block": "Древо-рубилка"
+  "block.treefarm.wood_cutter_block": "Древорубка",
+  "block.treefarm.planter_block": "Сажатель",
+  "block.treefarm.cultivator": "Культиватор"
 }

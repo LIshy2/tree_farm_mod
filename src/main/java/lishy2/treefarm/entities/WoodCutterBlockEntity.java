@@ -1,6 +1,5 @@
 package lishy2.treefarm.entities;
 
-import lishy2.treefarm.Treefarm;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
@@ -20,8 +19,11 @@ import static lishy2.treefarm.util.RegistryHandler.WOOD_CUTTER_BLOCK;
 
 public class WoodCutterBlockEntity extends TileEntity implements ITickableTileEntity {
 
+
+    public AxeItem axe;
+
+
     private Tree cuttingTreeNow;
-    private AxeItem axe;
     private int cooldown;
 
     public WoodCutterBlockEntity() {
@@ -37,9 +39,10 @@ public class WoodCutterBlockEntity extends TileEntity implements ITickableTileEn
                 if (cuttingTreeNow == null || cuttingTreeNow.isEmpty()) {
                     cuttingTreeNow = new Tree(this.getPos().up(), world);
                 }
-                Treefarm.LOGGER.info("WORLD STATE " + world);
-                if (!cuttingTreeNow.isEmpty())
+                if (!cuttingTreeNow.isEmpty()) {
+                    //TODO
                     world.destroyBlock(cuttingTreeNow.pop(), true);
+                }
                 cooldown = 0;
             }
         }

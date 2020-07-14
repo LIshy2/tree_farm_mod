@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "treefarm:block/wood_cutter_block"
+    },
+    "facing=south": {
+      "model": "treefarm:block/wood_cutter_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "treefarm:block/wood_cutter_block",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "treefarm:block/wood_cutter_block",
+      "y": 90
     }
   }
 }

@@ -77,7 +77,7 @@ class Tree {
         ArrayDeque<BlockPos> q = new ArrayDeque<>();
         q.add(one);
         boolean[][][] was = new boolean[400][400][400];
-        while (!q.isEmpty()) {
+        while (!q.isEmpty() && logs.size() + leaves.size() < 100) {
             BlockPos v = q.pollFirst();
             Block vBlock = w.getBlockState(v).getBlock();
             if (vBlock instanceof LogBlock) {

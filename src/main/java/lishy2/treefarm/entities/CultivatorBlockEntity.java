@@ -23,7 +23,7 @@ public class CultivatorBlockEntity extends TileEntity implements ITickableTileEn
     private ItemStack bonemealStack;
 
     public CultivatorBlockEntity() {
-        super(TileEntityType.Builder.create(WoodCutterBlockEntity::new, CULTIVATOR_BLOCK.get()).build(null));
+        super(TileEntityType.Builder.create(CultivatorBlockEntity::new, CULTIVATOR_BLOCK.get()).build(null));
         bonemealStack = new ItemStack(Items.BONE_MEAL, 64);
     }
 

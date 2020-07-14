@@ -15,7 +15,7 @@ public class PlanterBlockEntity extends TileEntity implements ITickableTileEntit
     public BlockState saplings;
 
     public PlanterBlockEntity() {
-        super(TileEntityType.Builder.create(WoodCutterBlockEntity::new, PLANTER_BLOCK.get()).build(null));
+        super(TileEntityType.Builder.create(PlanterBlockEntity::new, PLANTER_BLOCK.get()).build(null));
         saplings = Blocks.OAK_SAPLING.getDefaultState();
     }
 

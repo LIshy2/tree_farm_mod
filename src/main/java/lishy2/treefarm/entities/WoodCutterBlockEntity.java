@@ -1,13 +1,13 @@
 package lishy2.treefarm.entities;
 
 import lishy2.treefarm.Treefarm;
+import lishy2.treefarm.blocks.PlanterBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -25,17 +25,14 @@ import static lishy2.treefarm.util.RegistryHandler.WOOD_CUTTER_BLOCK;
 
 
 public class WoodCutterBlockEntity extends TileEntity implements ITickableTileEntity {
-
-
-    public ItemStack axe;
-
+    private ItemStack axe;
+    private ItemStack scissors;
 
     private Tree cuttingTreeNow;
     private int cooldown;
 
     public WoodCutterBlockEntity() {
         super(TileEntityType.Builder.create(WoodCutterBlockEntity::new, WOOD_CUTTER_BLOCK.get()).build(null));
-        axe = new ItemStack(Items.DIAMOND_AXE);
     }
 
 
@@ -49,20 +46,21 @@ public class WoodCutterBlockEntity extends TileEntity implements ITickableTileEn
                     Treefarm.LOGGER.info("Finding new tree");
                     cuttingTreeNow = new Tree(this.getPos().up(), world);
                 }
-                if (!cuttingTreeNow.isEmpty() && !axe.isEmpty()) {
-                    Treefarm.LOGGER.info("Cutting block " + cuttingTreeNow.peek() + " by " + axe);
-                    LootContext.Builder context = new LootContext.Builder((ServerWorld) world).withParameter(LootParameters.TOOL, axe).withParameter(LootParameters.POSITION, cuttingTreeNow.peek());
+                if (!cuttingTreeNow.isEmpty() && axe != null && !axe.isEmpty() && scissors != null && !scissors.isEmpty()) {
+                    ItemStack tool = world.getBlockState(cuttingTreeNow.peek()).getBlock() instanceof LogBlock ? axe : scissors;
+                    Treefarm.LOGGER.info("Cutting block " + cuttingTreeNow.peek() + " by " + tool);
+                    LootContext.Builder context = new LootContext.Builder((ServerWorld) world).withParameter(LootParameters.TOOL, tool).withParameter(LootParameters.POSITION, cuttingTreeNow.peek());
                     List<ItemStack> drop = world.getBlockState(cuttingTreeNow.peek()).getDrops(context);
                     Treefarm.LOGGER.info("Dropped " + drop);
-                    world.removeBlock(cuttingTreeNow.pop(), false);
+                    world.destroyBlock(cuttingTreeNow.pop(), false);
                     for (ItemStack itemStack : drop) {
-                        InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                        BlockPos forwardPosition = getPos().add(this.getBlockState().get(PlanterBlock.HORIZONTAL_FACING).getDirectionVec());
+                        InventoryHelper.spawnItemStack(world, forwardPosition.getX() + 0.5, forwardPosition.getY() + 0.5, forwardPosition.getZ() + 0.5, itemStack);
                     }
+                    tool.attemptDamageItem(1, world.rand, null);
                 }
                 cooldown = 0;
             }
-        } else if (axe.isEmpty()) {
-
         }
     }
 }
@@ -76,7 +74,7 @@ class Tree {
         leaves = new ArrayList<>();
         ArrayDeque<BlockPos> q = new ArrayDeque<>();
         q.add(one);
-        boolean[][][] was = new boolean[400][400][400];
+        boolean[][][] was = new boolean[20][60][20];
         while (!q.isEmpty() && logs.size() + leaves.size() < 100) {
             BlockPos v = q.pollFirst();
             Block vBlock = w.getBlockState(v).getBlock();

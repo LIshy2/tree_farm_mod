@@ -16,6 +16,7 @@ public class PlanterBlock extends HorizontalBlock {
 
     public PlanterBlock() {
         super(Properties.from(Blocks.DISPENSER).hardnessAndResistance(3.5f, 3.5f).harvestLevel(2));
+
     }
 
     @Override

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SIS",
+    "DRA",
+    "SIS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "D": {
+      "item": "minecraft:dispenser"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "A": {
+      "item": "minecraft:iron_axe"
+    }
+  },
+  "result": {
+    "item": "treefarm:wood_cutter_block"
+  }
+}

@@ -73,4 +73,6 @@ public class RegistryHandler {
     public static final RegistryObject<ContainerType<WoodCutterContainer>> WOOD_CUTTER_CONTAINER = CONTAINER_TYPES
             .register("wood_cutter_container", () -> IForgeContainerType.create(WoodCutterContainer::new));
 
+
+    //Tiel
 }

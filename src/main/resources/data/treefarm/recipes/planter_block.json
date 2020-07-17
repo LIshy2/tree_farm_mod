@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SID",
+    "CRT",
+    "SID"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "D": {
+      "item": "minecraft:dispenser"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "A": {
+      "item": "minecraft:iron_axe"
+    },
+    "T": {
+      "tag": "minecraft:saplings"
+    },
+    "C": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "item": "treefarm:planter_block"
+  }
+}

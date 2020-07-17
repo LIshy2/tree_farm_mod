@@ -2,19 +2,16 @@ package lishy2.treefarm.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import lishy2.treefarm.Treefarm;
-import lishy2.treefarm.containers.PlanterContainer;
+import lishy2.treefarm.containers.CultivatorContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
-public class PlanterBlockScreen extends ContainerScreen<PlanterContainer> {
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Treefarm.MOD_ID, "textures/gui/planter_gui.png");
+public class CultivatorBlockScreen extends ContainerScreen<CultivatorContainer> {
+    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Treefarm.MOD_ID, "textures/gui/cultivator_gui.png");
 
-    public PlanterBlockScreen(PlanterContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public CultivatorBlockScreen(CultivatorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
         this.guiLeft = 0;
         this.guiTop = 0;

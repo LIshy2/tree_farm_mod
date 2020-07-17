@@ -1,5 +1,8 @@
 {
   "block.treefarm.wood_cutter_block": "Wood Cutter",
   "block.treefarm.planter_block": "Planter",
-  "block.treefarm.cultivator_block": "Cultivator"
+  "block.treefarm.cultivator_block": "Cultivator",
+  "container.treefarm.cultivator_container": "Cultivator",
+  "container.treefarm.planter_container": "Planter",
+  "container.treefarm.wood_cutter_container": "Wood Cutter"
 }

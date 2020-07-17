@@ -2,16 +2,22 @@ package lishy2.treefarm.entities;
 
 import lishy2.treefarm.Treefarm;
 import lishy2.treefarm.blocks.PlanterBlock;
+import lishy2.treefarm.containers.WoodCutterContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.loot.LootContext;
@@ -24,29 +30,30 @@ import java.util.List;
 import static lishy2.treefarm.util.RegistryHandler.WOOD_CUTTER_BLOCK;
 
 
-public class WoodCutterBlockEntity extends TileEntity implements ITickableTileEntity {
-    private ItemStack axe;
-    private ItemStack scissors;
+public class WoodCutterBlockEntity extends ItemHolderEntity implements ITickableTileEntity {
 
     private Tree cuttingTreeNow;
     private int cooldown;
 
     public WoodCutterBlockEntity() {
-        super(TileEntityType.Builder.create(WoodCutterBlockEntity::new, WOOD_CUTTER_BLOCK.get()).build(null));
+        super(TileEntityType.Builder.create(WoodCutterBlockEntity::new, WOOD_CUTTER_BLOCK.get()).build(null), (ItemStack it) -> it.getItem() instanceof AxeItem || it.getItem() instanceof ShearsItem, 2);
     }
 
 
     @Override
     public void tick() {
-        if (world instanceof ServerWorld && !axe.isEmpty()) {
+        ItemStack axe = entityContent.get(0), scissors = entityContent.get(1);
+        if (world instanceof ServerWorld && !axe.isEmpty() && !scissors.isEmpty()) {
             ++cooldown;
             if (cooldown == 120 / axe.getDestroySpeed(Blocks.OAK_LOG.getDefaultState())) {
+                BlockPos forwardPosition = getPos().add(this.getBlockState().get(PlanterBlock.HORIZONTAL_FACING).getDirectionVec());
+                BlockPos backPosition = getPos().subtract(this.getBlockState().get(PlanterBlock.HORIZONTAL_FACING).getDirectionVec());
                 if (cuttingTreeNow == null || cuttingTreeNow.isEmpty()) {
                     Treefarm.LOGGER.info("Tree is empty");
                     Treefarm.LOGGER.info("Finding new tree");
-                    cuttingTreeNow = new Tree(this.getPos().up(), world);
+                    cuttingTreeNow = new Tree(forwardPosition, world);
                 }
-                if (!cuttingTreeNow.isEmpty() && axe != null && !axe.isEmpty() && scissors != null && !scissors.isEmpty()) {
+                if (!cuttingTreeNow.isEmpty()) {
                     ItemStack tool = world.getBlockState(cuttingTreeNow.peek()).getBlock() instanceof LogBlock ? axe : scissors;
                     Treefarm.LOGGER.info("Cutting block " + cuttingTreeNow.peek() + " by " + tool);
                     LootContext.Builder context = new LootContext.Builder((ServerWorld) world).withParameter(LootParameters.TOOL, tool).withParameter(LootParameters.POSITION, cuttingTreeNow.peek());
@@ -54,14 +61,23 @@ public class WoodCutterBlockEntity extends TileEntity implements ITickableTileEn
                     Treefarm.LOGGER.info("Dropped " + drop);
                     world.destroyBlock(cuttingTreeNow.pop(), false);
                     for (ItemStack itemStack : drop) {
-                        BlockPos forwardPosition = getPos().add(this.getBlockState().get(PlanterBlock.HORIZONTAL_FACING).getDirectionVec());
-                        InventoryHelper.spawnItemStack(world, forwardPosition.getX() + 0.5, forwardPosition.getY() + 0.5, forwardPosition.getZ() + 0.5, itemStack);
+                        InventoryHelper.spawnItemStack(world, backPosition.getX() + 0.5, backPosition.getY() + 0.5, forwardPosition.getZ() + 0.5, itemStack);
                     }
                     tool.attemptDamageItem(1, world.rand, null);
                 }
                 cooldown = 0;
             }
         }
+    }
+
+    @Override
+    protected ITextComponent getDefaultName() {
+        return new TranslationTextComponent("container.treefarm.wood_cutter_container");
+    }
+
+    @Override
+    protected Container createMenu(int id, PlayerInventory player) {
+        return new WoodCutterContainer(id, player, this);
     }
 }
 
@@ -85,13 +101,13 @@ class Tree {
             } else {
                 continue;
             }
-            was[v.getX() - one.getX() + 200][v.getY() - one.getY() + 200][v.getZ() - one.getZ() + 200] = true;
+            was[v.getX() - one.getX() + 2][v.getY() - one.getY() + 2][v.getZ() - one.getZ() + 2] = true;
             for (int dx = -1; dx <= 1; ++dx) {
                 for (int dy = -1; dy <= 1; ++dy) {
                     for (int dz = -1; dz <= 1; ++dz) {
                         BlockPos newBlock = v.add(dx, dy, dz);
-                        if (!was[newBlock.getX() - one.getX() + 200][newBlock.getY() - one.getY() + 200][newBlock.getZ() - one.getZ() + 200]) {
-                            was[newBlock.getX() - one.getX() + 200][newBlock.getY() - one.getY() + 200][newBlock.getZ() - one.getZ() + 200] = true;
+                        if (!was[newBlock.getX() - one.getX() + 10][newBlock.getY() - one.getY() + 3][newBlock.getZ() - one.getZ() + 10]) {
+                            was[newBlock.getX() - one.getX() + 10][newBlock.getY() - one.getY() + 3][newBlock.getZ() - one.getZ() + 10] = true;
                             q.add(newBlock);
                         }
                     }

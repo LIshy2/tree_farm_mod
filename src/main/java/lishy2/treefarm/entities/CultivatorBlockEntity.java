@@ -1,7 +1,7 @@
 package lishy2.treefarm.entities;
 
-import lishy2.treefarm.Treefarm;
 import lishy2.treefarm.blocks.CultivatorBlock;
+import lishy2.treefarm.containers.CultivatorContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,22 +15,27 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static lishy2.treefarm.util.RegistryHandler.CULTIVATOR_BLOCK;
 
-public class CultivatorBlockEntity extends ItemHolderEntity<BoneMealItem> implements ITickableTileEntity {
+public class CultivatorBlockEntity extends ItemHolderEntity implements ITickableTileEntity {
+
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public CultivatorBlockEntity() {
-        super(TileEntityType.Builder.create(CultivatorBlockEntity::new, CULTIVATOR_BLOCK.get()).build(null));
+        super(TileEntityType.Builder.create(CultivatorBlockEntity::new, CULTIVATOR_BLOCK.get()).build(null), (ItemStack it) -> it.getItem() instanceof BoneMealItem, 2);
     }
 
 
     @Override
     public void tick() {
-        ItemStack bonemealStack = holdedItemStack;
+        ItemStack bonemealStack = entityContent.get(0);
         if (world instanceof ServerWorld) {
-            Treefarm.LOGGER.info(world.getClosestPlayer(getPos().getX(), getPos().getY(), getPos().getZ()));
             boolean emptyArea = true;
             for (PlayerEntity p : ((ServerWorld) world).getPlayers()) {
                 if (p.getPositionVec().distanceTo(new Vec3d(getPos().getX(), getPos().getY(), getPos().getZ())) <= 4)
@@ -42,6 +47,7 @@ public class CultivatorBlockEntity extends ItemHolderEntity<BoneMealItem> implem
                 if (forwardBlock instanceof SaplingBlock) {
                     world.playSound(getPos().getX(), getPos().getY(), getPos().getZ(), SoundEvents.BLOCK_DISPENSER_DISPENSE, SoundCategory.BLOCKS, 100, 1, true);
                     BoneMealItem.applyBonemeal(bonemealStack, world, forwardPos);
+                    LOGGER.info("Bonemeal applied");
                     bonemealStack.shrink(1);
                 }
             }
@@ -50,7 +56,12 @@ public class CultivatorBlockEntity extends ItemHolderEntity<BoneMealItem> implem
 
 
     @Override
+    protected ITextComponent getDefaultName() {
+        return new TranslationTextComponent("container.treefarm.cultivator_container");
+    }
+
+    @Override
     protected Container createMenu(int id, PlayerInventory player) {
-        return null;
+        return new CultivatorContainer(id, player, this);
     }
 }

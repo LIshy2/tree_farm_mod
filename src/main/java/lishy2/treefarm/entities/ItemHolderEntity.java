@@ -1,6 +1,5 @@
 package lishy2.treefarm.entities;
 
-import lishy2.treefarm.blocks.CultivatorBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,45 +15,50 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class ItemHolderEntity<K> extends LockableLootTileEntity {
-    protected ItemStack holdedItemStack;
-    private NonNullList<ItemStack> entityContent = NonNullList.from(holdedItemStack);
+@FunctionalInterface
+interface ValidatorItemStack {
+    boolean validate(ItemStack it);
+}
+
+public abstract class ItemHolderEntity extends LockableLootTileEntity {
+    protected NonNullList<ItemStack> entityContent;
     protected int numPlayersUsing;
     private IItemHandlerModifiable items = createHandler();
     private LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
+    ValidatorItemStack validator;
+    private int size;
 
-
-    public ItemHolderEntity(TileEntityType<?> typeIn) {
+    public ItemHolderEntity(TileEntityType<?> typeIn, ValidatorItemStack validator, int size) {
         super(typeIn);
+        this.size = size;
+        this.validator = validator;
+        entityContent = NonNullList.withSize(size, ItemStack.EMPTY);
     }
 
 
     @Override
     public NonNullList<ItemStack> getItems() {
+
         return entityContent;
     }
 
     @Override
     protected void setItems(NonNullList<ItemStack> itemsIn) {
         entityContent = itemsIn;
-        holdedItemStack = itemsIn.get(0);
     }
 
     @Override
-    protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("block.cultivator_block");
-    }
+    protected abstract ITextComponent getDefaultName();
 
     @Override
     protected abstract Container createMenu(int id, PlayerInventory player);
@@ -62,17 +66,16 @@ public abstract class ItemHolderEntity<K> extends LockableLootTileEntity {
 
     @Override
     public int getSizeInventory() {
-        return 1;
+        return size;
     }
 
     @Override
     public void read(CompoundNBT compound) {
         super.read(compound);
-        this.entityContent = NonNullList.withSize(1, ItemStack.EMPTY);
+        this.entityContent = NonNullList.withSize(size, ItemStack.EMPTY);
         if (!this.checkLootAndRead(compound)) {
             ItemStackHelper.loadAllItems(compound, entityContent);
         }
-        holdedItemStack = entityContent.get(0);
     }
 
     @Override
@@ -116,19 +119,15 @@ public abstract class ItemHolderEntity<K> extends LockableLootTileEntity {
 
     protected void onOpenOrClose() {
         Block block = this.getBlockState().getBlock();
-        if (block instanceof CultivatorBlock) {
-            this.world.addBlockEvent(this.pos, block, 1, this.numPlayersUsing);
-            this.world.notifyNeighborsOfStateChange(this.pos, block);
-        }
+        this.world.addBlockEvent(this.pos, block, 1, this.numPlayersUsing);
+        this.world.notifyNeighborsOfStateChange(this.pos, block);
     }
 
     public static int getPlayersUsing(IBlockReader reader, BlockPos pos) {
         BlockState blockState = reader.getBlockState(pos);
         if (blockState.hasTileEntity()) {
             TileEntity tileentity = reader.getTileEntity(pos);
-            if (tileentity instanceof CultivatorBlockEntity) {
-                return ((CultivatorBlockEntity) tileentity).numPlayersUsing;
-            }
+            return ((ItemHolderEntity) tileentity).numPlayersUsing;
         }
         return 0;
     }
@@ -152,7 +151,13 @@ public abstract class ItemHolderEntity<K> extends LockableLootTileEntity {
     }
 
     private IItemHandlerModifiable createHandler() {
-        return new InvWrapper(this);
+        return new ItemStackHandler() {
+            @Override
+            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+                // check if item is valid for slot, just return true for now(all items will be valid)
+                return validator.validate(stack);
+            }
+        };
     }
 
     @Override

@@ -1,5 +1,8 @@
 {
   "block.treefarm.wood_cutter_block": "Древорубка",
   "block.treefarm.planter_block": "Сажатель",
-  "block.treefarm.cultivator_block": "Культиватор"
+  "block.treefarm.cultivator_block": "Культиватор",
+  "container.treefarm.cultivator_container": "Культиватор",
+  "container.treefarm.planter_container": "Сажатель",
+  "container.treefarm.wood_cutter_container": "Древорубка"
 }

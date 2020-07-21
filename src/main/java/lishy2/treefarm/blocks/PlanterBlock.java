@@ -4,8 +4,8 @@ import lishy2.treefarm.entities.PlanterBlockEntity;
 import lishy2.treefarm.util.RegistryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 public class PlanterBlock extends HorizontalBlock {
 
     public PlanterBlock() {
-        super(Properties.from(Blocks.DISPENSER).hardnessAndResistance(3.5f, 3.5f).harvestLevel(2));
+        super(Properties.create(Material.ROCK).hardnessAndResistance(3.5f, 3.5f).harvestLevel(2));
 
     }
 

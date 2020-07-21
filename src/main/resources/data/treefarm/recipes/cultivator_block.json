@@ -18,12 +18,6 @@
     "R": {
       "item": "minecraft:redstone_block"
     },
-    "A": {
-      "item": "minecraft:iron_axe"
-    },
-    "T": {
-      "tag": "minecraft:saplings"
-    },
     "C": {
       "item": "minecraft:chest"
     },

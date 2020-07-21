@@ -2,7 +2,7 @@
   "parent": "block/orientable",
   "textures": {
     "top": "treefarm:blocks/treefarm_top_and_down",
-    "front": "treefarm:blocks/planter_front",
+    "front": "treefarm:blocks/cultivator_front_on",
     "side": "treefarm:blocks/treefarm_side"
   }
 }

@@ -4,12 +4,14 @@ import lishy2.treefarm.entities.CultivatorBlockEntity;
 import lishy2.treefarm.util.RegistryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.RedstoneTorchBlock;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -23,8 +25,12 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 
 public class CultivatorBlock extends HorizontalBlock {
+    public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
+
+
     public CultivatorBlock() {
-        super(Properties.from(Blocks.DISPENSER).hardnessAndResistance(3.5f, 3.5f).harvestLevel(2));
+        super(Properties.create(Material.ROCK).hardnessAndResistance(3.5f, 3.5f).harvestLevel(2));
+        this.setDefaultState(this.stateContainer.getBaseState().with(LIT, false));
     }
 
     @Override
@@ -41,7 +47,7 @@ public class CultivatorBlock extends HorizontalBlock {
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(HORIZONTAL_FACING);
+        builder.add(HORIZONTAL_FACING, LIT);
     }
 
     @Override

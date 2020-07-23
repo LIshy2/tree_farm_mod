@@ -22,10 +22,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-//import lishy2.treefarm.entities.WoodCutterBlockEntity;
 
-//import lishy2.treefarm.blocks.WoodCutterBlock;
-//import lishy2.treefarm.entities.WoodCutterBlockEntity;
 
 public class RegistryHandler {
 
@@ -33,7 +30,7 @@ public class RegistryHandler {
     private static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, Treefarm.MOD_ID);
     private static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Treefarm.MOD_ID);
     private static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, Treefarm.MOD_ID);
-    public static final DeferredRegister<ContainerType<?>> CONTAINER_TYPES = new DeferredRegister<>(ForgeRegistries.CONTAINERS, Treefarm.MOD_ID);
+    private static final DeferredRegister<ContainerType<?>> CONTAINER_TYPES = new DeferredRegister<>(ForgeRegistries.CONTAINERS, Treefarm.MOD_ID);
 
     public static void init() {
         Treefarm.LOGGER.info("Registration started");

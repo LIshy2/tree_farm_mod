@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SID",
-    "CRF",
-    "SID"
+    "III",
+    "DRD",
+    "SSS"
   ],
   "key": {
     "S": {
@@ -17,12 +17,6 @@
     },
     "R": {
       "item": "minecraft:redstone_block"
-    },
-    "C": {
-      "item": "minecraft:chest"
-    },
-    "F": {
-      "item": "minecraft:furnace"
     }
   },
   "result": {

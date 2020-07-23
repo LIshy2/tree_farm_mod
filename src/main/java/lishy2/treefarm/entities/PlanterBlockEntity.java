@@ -3,6 +3,7 @@ package lishy2.treefarm.entities;
 import lishy2.treefarm.blocks.PlanterBlock;
 import lishy2.treefarm.containers.PlanterContainer;
 import lishy2.treefarm.util.RegistryHandler;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,13 +15,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -30,10 +29,13 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Objects;
 
+@MethodsReturnNonnullByDefault
 public class PlanterBlockEntity extends LockableLootTileEntity implements ITickableTileEntity {
-    protected NonNullList<ItemStack> entityContent;
-    protected int numPlayersUsing;
+    private NonNullList<ItemStack> entityContent;
+    private int numPlayersUsing;
     private IItemHandlerModifiable items = createHandler();
     private LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
     private int size;
@@ -50,7 +52,7 @@ public class PlanterBlockEntity extends LockableLootTileEntity implements ITicka
         if (world instanceof ServerWorld) {
             BlockPos forwardPos = getPos().add(this.getBlockState().get(PlanterBlock.HORIZONTAL_FACING).getDirectionVec());
             BlockState forwardBlock = world.getBlockState(forwardPos);
-            if (forwardBlock.isAir(world, forwardPos) && saplings != null && !saplings.isEmpty()) {
+            if (forwardBlock.isAir(world, forwardPos) && !saplings.isEmpty()) {
                 BlockState saplingBlock = ((BlockItem) saplings.getItem()).getBlock().getDefaultState();
                 world.setBlockState(forwardPos, saplingBlock);
                 saplings.shrink(1);
@@ -63,16 +65,20 @@ public class PlanterBlockEntity extends LockableLootTileEntity implements ITicka
         return new TranslationTextComponent("container.treefarm.planter_container");
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     protected Container createMenu(int id, PlayerInventory player) {
         return new PlanterContainer(id, player, this);
     }
+
 
     public NonNullList<ItemStack> getItems() {
 
         return entityContent;
     }
 
+
+    @ParametersAreNonnullByDefault
     @Override
     protected void setItems(NonNullList<ItemStack> itemsIn) {
         entityContent = itemsIn;
@@ -132,20 +138,21 @@ public class PlanterBlockEntity extends LockableLootTileEntity implements ITicka
         }
     }
 
-    protected void onOpenOrClose() {
+    private void onOpenOrClose() {
         Block block = this.getBlockState().getBlock();
-        this.world.addBlockEvent(this.pos, block, 1, this.numPlayersUsing);
+        Objects.requireNonNull(this.world).addBlockEvent(this.pos, block, 1, this.numPlayersUsing);
         this.world.notifyNeighborsOfStateChange(this.pos, block);
     }
 
-    public static int getPlayersUsing(IBlockReader reader, BlockPos pos) {
-        BlockState blockState = reader.getBlockState(pos);
-        if (blockState.hasTileEntity()) {
-            TileEntity tileentity = reader.getTileEntity(pos);
-            return ((PlanterBlockEntity) tileentity).numPlayersUsing;
-        }
-        return 0;
-    }
+//    public static int getPlayersUsing(IBlockReader reader, BlockPos pos) {
+//        BlockState blockState = reader.getBlockState(pos);
+//        if (blockState.hasTileEntity()) {
+//            TileEntity tileentity = reader.getTileEntity(pos);
+//            assert tileentity != null;
+//            return ((PlanterBlockEntity) tileentity).numPlayersUsing;
+//        }
+//        return 0;
+//    }
 
     @Override
     public void updateContainingBlockInfo() {

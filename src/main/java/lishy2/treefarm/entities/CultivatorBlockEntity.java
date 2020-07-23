@@ -3,8 +3,8 @@ package lishy2.treefarm.entities;
 import lishy2.treefarm.blocks.CultivatorBlock;
 import lishy2.treefarm.containers.CultivatorContainer;
 import lishy2.treefarm.util.RegistryHandler;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
@@ -24,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -36,12 +34,13 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+@MethodsReturnNonnullByDefault
 public class CultivatorBlockEntity extends LockableLootTileEntity implements ITickableTileEntity {
-
-    public static final Logger LOGGER = LogManager.getLogger();
-    protected NonNullList<ItemStack> entityContent;
-    protected int numPlayersUsing;
+    private static final Logger LOGGER = LogManager.getLogger();
+    private NonNullList<ItemStack> entityContent;
+    private int numPlayersUsing;
     private IItemHandlerModifiable items = createHandler();
     private LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
     private int size;
@@ -66,7 +65,7 @@ public class CultivatorBlockEntity extends LockableLootTileEntity implements ITi
                 if (p.getPositionVec().distanceTo(new Vec3d(getPos().getX(), getPos().getY(), getPos().getZ())) <= 4)
                     emptyArea = false;
             }
-            if (emptyArea && bonemealStack != null && !bonemealStack.isEmpty()) {
+            if (emptyArea && !bonemealStack.isEmpty()) {
                 BlockPos forwardPos = getPos().add(this.getBlockState().get(CultivatorBlock.HORIZONTAL_FACING).getDirectionVec());
                 Block forwardBlock = world.getBlockState(forwardPos).getBlock();
                 if (forwardBlock instanceof SaplingBlock) {
@@ -83,12 +82,12 @@ public class CultivatorBlockEntity extends LockableLootTileEntity implements ITi
         }
     }
 
-
     @Override
     protected ITextComponent getDefaultName() {
         return new TranslationTextComponent("container.treefarm.cultivator_container");
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     protected Container createMenu(int id, PlayerInventory player) {
         return new CultivatorContainer(id, player, this);
@@ -101,6 +100,8 @@ public class CultivatorBlockEntity extends LockableLootTileEntity implements ITi
         return entityContent;
     }
 
+
+    @ParametersAreNonnullByDefault
     @Override
     protected void setItems(NonNullList<ItemStack> itemsIn) {
         entityContent = itemsIn;
@@ -160,20 +161,22 @@ public class CultivatorBlockEntity extends LockableLootTileEntity implements ITi
         }
     }
 
-    protected void onOpenOrClose() {
+    private void onOpenOrClose() {
         Block block = this.getBlockState().getBlock();
+        assert this.world != null;
         this.world.addBlockEvent(this.pos, block, 1, this.numPlayersUsing);
         this.world.notifyNeighborsOfStateChange(this.pos, block);
     }
 
-    public static int getPlayersUsing(IBlockReader reader, BlockPos pos) {
-        BlockState blockState = reader.getBlockState(pos);
-        if (blockState.hasTileEntity()) {
-            TileEntity tileentity = reader.getTileEntity(pos);
-            return ((CultivatorBlockEntity) tileentity).numPlayersUsing;
-        }
-        return 0;
-    }
+//    public static int getPlayersUsing(IBlockReader reader, BlockPos pos) {
+//        BlockState blockState = reader.getBlockState(pos);
+//        if (blockState.hasTileEntity()) {
+//            TileEntity tileentity = reader.getTileEntity(pos);
+//            assert tileentity != null;
+//            return ((CultivatorBlockEntity) tileentity).numPlayersUsing;
+//        }
+//        return 0;
+//    }
 
     @Override
     public void updateContainingBlockInfo() {

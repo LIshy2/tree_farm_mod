@@ -2,32 +2,41 @@ package lishy2.treefarm.containers;
 
 import lishy2.treefarm.entities.PlanterBlockEntity;
 import lishy2.treefarm.util.RegistryHandler;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 
+@MethodsReturnNonnullByDefault
 public class PlanterContainer extends Container {
-    public final PlanterBlockEntity tileEntity;
     private final IWorldPosCallable canInteractWithCallable;
-
+    private final List<Item> saplings = Arrays.asList(Items.ACACIA_SAPLING, Items.BIRCH_SAPLING, Items.DARK_OAK_SAPLING, Items.JUNGLE_SAPLING, Items.OAK_SAPLING, Items.SPRUCE_SAPLING);
 
     public PlanterContainer(final int windowId, final PlayerInventory playerInventory, final PlanterBlockEntity tileEntity) {
         super(RegistryHandler.PLANTER_CONTAINER.get(), windowId);
-        this.tileEntity = tileEntity;
-        this.canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
+        this.canInteractWithCallable = IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos());
         // Main Inventory
         int startX = 80;
         int startY = 20;
         int slotSizePlus2 = 18;
-        this.addSlot(new Slot(tileEntity, 0, startX, startY));
+        this.addSlot(new Slot(tileEntity, 0, startX, startY) {
+            public boolean isItemValid(ItemStack stack) {
+                return saplings.contains(stack.getItem());
+            }
+        });
 
         // Main Player Inventory
         int startPlayerInvY = 51;
@@ -59,6 +68,7 @@ public class PlanterContainer extends Container {
         this(windowId, playerInventory, getTileEntity(playerInventory, data));
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
         return isWithinUsableDistance(canInteractWithCallable, playerIn, RegistryHandler.PLANTER_BLOCK.get());

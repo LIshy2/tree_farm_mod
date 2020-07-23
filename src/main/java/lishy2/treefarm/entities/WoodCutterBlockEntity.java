@@ -5,7 +5,11 @@ import lishy2.treefarm.blocks.PlanterBlock;
 import lishy2.treefarm.blocks.WoodCutterBlock;
 import lishy2.treefarm.containers.WoodCutterContainer;
 import lishy2.treefarm.util.RegistryHandler;
-import net.minecraft.block.*;
+import mcp.MethodsReturnNonnullByDefault;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.LogBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -15,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +26,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.loot.LootContext;
@@ -36,15 +38,16 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-
+@MethodsReturnNonnullByDefault
 public class WoodCutterBlockEntity extends LockableLootTileEntity implements ITickableTileEntity {
-    protected NonNullList<ItemStack> entityContent;
-    protected int numPlayersUsing;
+    private NonNullList<ItemStack> entityContent;
+    private int numPlayersUsing;
     private IItemHandlerModifiable items = createHandler();
     private LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
     private int size;
@@ -68,10 +71,9 @@ public class WoodCutterBlockEntity extends LockableLootTileEntity implements ITi
             if (cooldown == 120 / axe.getDestroySpeed(Blocks.OAK_LOG.getDefaultState())) {
                 Vec3i forwardVector = (this.getBlockState().get(PlanterBlock.HORIZONTAL_FACING).getDirectionVec());
                 BlockPos forwardPosition = getPos().add(forwardVector);
-                Vec3d backVector = new Vec3d(-forwardVector.getX() / 2, -forwardVector.getY() / 2, -forwardVector.getZ() / 2);
-                if (cuttingTreeNow == null || cuttingTreeNow.isEmpty()) {
+                Vec3d backVector = new Vec3d(-forwardVector.getX() / 2.0, -forwardVector.getY() / 2.0, -forwardVector.getZ() / 2.0);
+                if (cuttingTreeNow == null || cuttingTreeNow.isEmpty())
                     cuttingTreeNow = new Tree(forwardPosition, world);
-                }
                 if (!cuttingTreeNow.isEmpty()) {
                     getBlockState().with(WoodCutterBlock.LIT, true);
                     ItemStack tool = world.getBlockState(cuttingTreeNow.peek()).getBlock() instanceof LogBlock ? axe : scissors;
@@ -98,6 +100,8 @@ public class WoodCutterBlockEntity extends LockableLootTileEntity implements ITi
         return new TranslationTextComponent("container.treefarm.wood_cutter_container");
     }
 
+
+    @ParametersAreNonnullByDefault
     @Override
     protected Container createMenu(int id, PlayerInventory player) {
         return new WoodCutterContainer(id, player, this);
@@ -105,10 +109,11 @@ public class WoodCutterBlockEntity extends LockableLootTileEntity implements ITi
 
     @Override
     public NonNullList<ItemStack> getItems() {
-
         return entityContent;
     }
 
+
+    @ParametersAreNonnullByDefault
     @Override
     protected void setItems(NonNullList<ItemStack> itemsIn) {
         entityContent = itemsIn;
@@ -168,20 +173,22 @@ public class WoodCutterBlockEntity extends LockableLootTileEntity implements ITi
         }
     }
 
-    protected void onOpenOrClose() {
+    private void onOpenOrClose() {
         Block block = this.getBlockState().getBlock();
+        assert this.world != null;
         this.world.addBlockEvent(this.pos, block, 1, this.numPlayersUsing);
         this.world.notifyNeighborsOfStateChange(this.pos, block);
     }
 
-    public static int getPlayersUsing(IBlockReader reader, BlockPos pos) {
-        BlockState blockState = reader.getBlockState(pos);
-        if (blockState.hasTileEntity()) {
-            TileEntity tileentity = reader.getTileEntity(pos);
-            return ((WoodCutterBlockEntity) tileentity).numPlayersUsing;
-        }
-        return 0;
-    }
+//    public static int getPlayersUsing(IBlockReader reader, BlockPos pos) {
+//        BlockState blockState = reader.getBlockState(pos);
+//        if (blockState.hasTileEntity()) {
+//            TileEntity tileentity = reader.getTileEntity(pos);
+//            assert tileentity != null;
+//            return ((WoodCutterBlockEntity) tileentity).numPlayersUsing;
+//        }
+//        return 0;
+//    }
 
     @Override
     public void updateContainingBlockInfo() {
@@ -218,7 +225,7 @@ class Tree {
     private ArrayList<BlockPos> logs;
     private ArrayList<BlockPos> leaves;
 
-    public Tree(BlockPos one, World w) {
+    Tree(BlockPos one, World w) {
         logs = new ArrayList<>();
         leaves = new ArrayList<>();
         ArrayDeque<BlockPos> q = new ArrayDeque<>();

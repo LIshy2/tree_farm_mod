@@ -36,6 +36,7 @@ public class CultivatorBlockScreen extends ContainerScreen<CultivatorContainer> 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+        assert this.minecraft != null;
         this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SID",
-    "CRT",
-    "SID"
+    "SSS",
+    "RDR",
+    "III"
   ],
   "key": {
     "S": {
@@ -17,12 +17,6 @@
     },
     "R": {
       "item": "minecraft:redstone_block"
-    },
-    "T": {
-      "tag": "minecraft:saplings"
-    },
-    "C": {
-      "item": "minecraft:chest"
     }
   },
   "result": {

@@ -1,10 +1,10 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "top": "treefarm:blocks/treefarm_top_and_down",
-    "front": "treefarm:blocks/wood_cutter_front",
-    "east": "treefarm:blocks/treefarm_side",
-    "west": "treefarm:blocks/treefarm_side",
-    "south": "treefarm:blocks/wood_cutter_back_on"
+    "top": "treefarm:blocks/saw_down",
+    "front": "treefarm:blocks/saw_up",
+    "east": "treefarm:blocks/saw_side",
+    "west": "treefarm:blocks/saw_side",
+    "south": "treefarm:blocks/saw_front"
   }
 }

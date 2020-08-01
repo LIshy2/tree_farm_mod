@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " X ",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:jungle_leaves"
+    }
+  },
+  "result": {
+    "item": "minecraft:jungle_sapling"
+  }
+}

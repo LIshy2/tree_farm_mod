@@ -96,7 +96,6 @@ public class CultivatorBlockEntity extends LockableLootTileEntity implements ITi
 
     @Override
     public NonNullList<ItemStack> getItems() {
-
         return entityContent;
     }
 

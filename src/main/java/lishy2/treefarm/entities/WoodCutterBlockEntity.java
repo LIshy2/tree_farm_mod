@@ -231,7 +231,7 @@ class Tree {
         ArrayDeque<BlockPos> q = new ArrayDeque<>();
         q.add(one);
         HashSet<BlockPos> was = new HashSet<>();
-        while (!q.isEmpty() && logs.size() + leaves.size() < 100) {
+        while (!q.isEmpty() && logs.size() + leaves.size() < 1000) {
             BlockPos v = q.pollFirst();
             Block vBlock = w.getBlockState(v).getBlock();
             if (vBlock instanceof LogBlock) {

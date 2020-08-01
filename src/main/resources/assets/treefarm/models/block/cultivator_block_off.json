@@ -1,8 +1,8 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "top": "treefarm:blocks/treefarm_top_and_down",
-    "front": "treefarm:blocks/cultivator_front_off",
-    "side": "treefarm:blocks/treefarm_side"
+    "top": "treefarm:blocks/fertilizer_up_and_down",
+    "front": "treefarm:blocks/fertilizer_front",
+    "side": "treefarm:blocks/fertilizer_side"
   }
 }

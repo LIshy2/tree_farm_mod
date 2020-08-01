@@ -10,10 +10,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
-import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -78,13 +76,5 @@ public class PlanterBlock extends HorizontalBlock {
             }
         }
         return ActionResultType.FAIL;
-    }
-
-    private void interactWith(World worldIn, BlockPos pos, PlayerEntity player) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        if (tileentity instanceof PlanterBlockEntity) {
-            player.openContainer((INamedContainerProvider) tileentity);
-            player.addStat(Stats.INTERACT_WITH_FURNACE);
-        }
     }
 }
